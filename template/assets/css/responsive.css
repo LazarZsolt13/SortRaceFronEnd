@@ -560,7 +560,7 @@
   left: 0;
 }
 div#main_menu .navbar-nav{
-  height: 210px;
+  /* height: 210px; */
   overflow-y: auto;
 }
 .marketing-tools .section-heading {
