@@ -761,7 +761,7 @@ padding: 150px 0px 0px;
 
 @media  (max-width: 575px) {
   .hero-area {
-    padding: 232px 0px 265px;
+    padding: 232px 50px 265px;
   }
   .hero-area .left-content .content .subtitle {
     font-size: 20px;
