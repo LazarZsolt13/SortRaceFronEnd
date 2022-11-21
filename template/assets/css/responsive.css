@@ -310,8 +310,8 @@
 .breadcrumb-area .bc-img {
   position: absolute!important;
   right: 0px!important;
-  max-width: 50%!important;
-  top: 65%!important;
+  /* max-width: 50%!important; */
+  top: 50%!important;
   bottom: auto!important;
   transform: translateY(-50%)!important;
 }

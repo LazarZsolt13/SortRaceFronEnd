@@ -60,7 +60,8 @@ body {
   font-size: 18px;
   margin: 0;
   color: #a1aed4;
-  overflow-x: hidden; }
+  overflow-x: hidden; 
+  padding-top: 100px;}
 
 body.modal-open {
   padding-right: 0px !important; }
@@ -544,7 +545,7 @@ select:focus {
       bottom: 0px;
       max-width: 42%; }
   .breadcrumb-area.play {
-    padding: 260px 0px 277px; }
+    padding: 180px 0px 277px; }
     .breadcrumb-area.play .bc-img {
       position: absolute;
       right: 0px;
@@ -1056,7 +1057,7 @@ select:focus {
 
 /* Footer Area Start */
 .footer {
-  padding-top: 120px;
+  /* padding-top: 120px; */
   overflow: hidden;
   position: relative;
   background-color: #070b28;
@@ -1092,7 +1093,7 @@ select:focus {
           font-size: 15px;
           padding-right: 4px; }
   .footer .copy-bg {
-    margin-top: 110px;
+    /* margin-top: 110px; */
     padding: 10px 15px 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     background: #0b122e; }
