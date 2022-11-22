@@ -2239,7 +2239,7 @@ select:focus {
           color: #cfcffd;
           font-size: 14px; }
   .play-games .all-games {
-    padding: 119px 0px 120px; }
+    padding: 126px 0px 120px; }
     .play-games .all-games .single-game {
       margin-bottom: 54px; }
     .play-games .all-games .mybtn1 {
@@ -2252,12 +2252,13 @@ select:focus {
       .play-games .all-games .nav li {
         display: inline-block; }
         .play-games .all-games .nav li a {
-          width: 150px;
-          height: 150px;
+          width: 86px;
+          height: 120px;
           border-style: solid;
           border-width: 1px;
           border-color: #273b71;
           border-radius: 50%;
+          border-radius: 10px;
           margin: 0px 10px;
           text-align: center;
           -webkit-box-shadow: 0px 10px 15px 0px rgba(0, 0, 0, 0.4);
@@ -2273,7 +2274,7 @@ select:focus {
               display: none; }
           .play-games .all-games .nav li a span {
             display: block;
-            font-size: 14px;
+            font-size: 8px;
             line-height: 24px;
             text-transform: uppercase;
             text-shadow: 0px 0px 3px #2eb7eb, 0px 0px 7px #2eb7eb;
