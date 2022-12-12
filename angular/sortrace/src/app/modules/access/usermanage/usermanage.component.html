@@ -13,7 +13,7 @@
         <div class="container">
                 <div class="col-lg-12">
                     <div class="content" style = "display: flex; justify-content: flex-end">
-                            <ul>
+                            <ul *ngIf="loged">
                                 <li>
                                     <a href="#" class="sign-in" data-toggle="modal" data-target="#login">
                                         <i class="fas fa-user"></i> Log in
@@ -24,6 +24,10 @@
                                     </a>
                                 </li>
                             </ul>
+                            <p *ngIf="!loged">Üdv {{nickname}}!&nbsp;&nbsp;&nbsp;
+                            <a href="#" class="sign-in" (click)="logout()">
+                                Sign out
+                            </a></p>
                         </div>
                     </div>
                 </div>

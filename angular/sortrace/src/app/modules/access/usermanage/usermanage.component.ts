@@ -15,9 +15,15 @@ import { UserService } from 'src/app/core/services/user.service';
 export class UsermanageComponent implements OnInit {
   userLoginDto: LoginUserDto = new LoginUserDto();
   registerDto: RegisterUserDto = new RegisterUserDto();
+  loged: Boolean = false;
+  nickname: String| undefined = "";
+  cookie: String|null = "";
   constructor( private cookieService:CookieService, private router:Router, private userService:UserService, ) { }
 
   ngOnInit(): void {
+    this.loged = this.cookieService.getCookie('currentUser') == null;
+    this.cookie = this.cookieService.getCookie('currentUser');
+    this.nickname = this.cookie?.split(',')[3].split(':')[1].replace("\"", '').replace("\"", '');
   }
 
   login():void{
@@ -31,8 +37,7 @@ export class UsermanageComponent implements OnInit {
           JSON.stringify(logedInUser),
           7
         )
-        console.log("login siker");
-        // this.router.navigateByUrl("")
+        window.location.reload();
       },
       error: (err) => {
         if (err.status === 403) {
@@ -47,7 +52,6 @@ export class UsermanageComponent implements OnInit {
       next: (response: HttpResponse<Boolean>) => {
         if(response.body === true){
           console.log("sikeres regisztracio");
-          // this.router.navigateByUrl("")
         }
       },
       error: (err) => {
@@ -55,6 +59,10 @@ export class UsermanageComponent implements OnInit {
         console.log(err.message);
       }
     });
+  }
+
+  logout():void{
+    this.cookieService.deleteCookie('currentUser');
   }
 
 }
