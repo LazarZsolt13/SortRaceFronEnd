@@ -211,21 +211,21 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <div class="modal-body">
                 <div class="text-center mt-4">
-                    <h3  style="font-weight: bold; color:black">SORT<span style="color:#EC2124">RACE</span></h3>
+                    <h3  style="font-weight: bold; color:white">SORT<span style="color:#EC2124">RACE</span></h3>
                 </div>
                 <div class="header-area">
                     <h4 class="title">Great to have you back!</h4>
                     <p class="sub-title">Enter your details below.</p>
                 </div>
                 <div class="form-area">
-                    <form action="#" method="POST">
+                    <!-- <form> -->
                         <div class="form-group">
                                 <label for="login-input-email">Email</label>
-                                <input type="email" class="input-field" id="login-input-email" placeholder="Enter your e-mail">
+                                <input type="email" class="input-field" id="login-input-email" placeholder="Enter your e-mail" [(ngModel)]="userLoginDto.email" name="email" id="email" required>
                         </div>
                         <div class="form-group">
                                 <label for="login-input-password">Password</label>
-                                <input type="password" class="input-field" id="login-input-password" placeholder="Password">
+                                <input type="password" class="input-field" id="login-input-password" placeholder="Password" [(ngModel)]="userLoginDto.password" name="password" id="password" required>
                         </div>
                         <!--
                         <div class="form-group">
@@ -245,9 +245,9 @@
                         </div>
                         -->
                         <div class="form-group">
-                               <button type="submit" class="mybtn1">Log In</button>
+                               <button class="mybtn1" (click)="login();">Log In</button>
                         </div>
-                    </form>
+                    <!-- </form> -->
                 </div>
             
             </div>
@@ -263,7 +263,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <div class="modal-body">
                     <div class="text-center mt-4">
-                        <h3  style="font-weight: bold; color:black">SORT<span style="color:#EC2124">RACE</span></h3>
+                        <h3  style="font-weight: bold; color:white">SORT<span style="color:#EC2124">RACE</span></h3>
                     </div>
                     <div class="header-area">
                         <h4 class="title">Welcome!</h4>
@@ -272,24 +272,32 @@
                     <div class="form-area">
                         <form action="#" method="POST">
                             <div class="form-group">
-                                    <label for="input-name">Name</label>
-                                    <input type="text" class="input-field" id="input-name" placeholder="Enter your name here..">
+                                    <label for="input-name">First Name</label>
+                                    <input type="text" class="input-field" id="input-name" placeholder="Enter your first name here.." [(ngModel)]="registerDto.firstName" name="firstname" id="firstname">
                             </div>
                             <div class="form-group">
+                                <label for="input-name">Last Name</label>
+                                <input type="text" class="input-field" id="input-name" placeholder="Enter your last name here.." [(ngModel)]="registerDto.lastName" name="lastname" id="lastname">
+                        </div>
+                            <div class="form-group">
                                     <label for="input-email">Email</label>
-                                    <input type="email" class="input-field" id="input-email" placeholder="Enter your e-mail here..">
+                                    <input type="email" class="input-field" id="input-email" placeholder="Enter your e-mail here.." [(ngModel)]="registerDto.email" name="email" id="email">
                             </div>
                             <div class="form-group">
                                     <label for="input-password">Password</label>
-                                    <input type="password" class="input-field" id="input-password" placeholder="Enter your password here..">
+                                    <input type="password" class="input-field" id="input-password" placeholder="Enter your password here.." [(ngModel)]="registerDto.password" name="password" id="password">
                             </div>
                             <div class="form-group">
+                                <label for="input-name">Nickname</label>
+                                <input type="text" class="input-field" id="input-name" placeholder="Enter your nickname here.." [(ngModel)]="registerDto.nickName" name="nickname" id="nickname">
+                        </div>
+                            <!-- <div class="form-group">
                                     <label for="input-con-password">Confirm password</label>
                                     <input type="password" class="input-field" id="input-con-password" placeholder="Confirm password..">
-                            </div>
+                            </div> -->
                             
                             <div class="form-group">
-                                <button type="submit" class="mybtn1">Sign in</button>
+                                <button type="submit" class="mybtn1" (click)="register()">Sign in</button>
                             </div>
                         </form>
                     </div>
