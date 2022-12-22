@@ -74,12 +74,16 @@
                               
                             </li>
                             
-                            <li class="nav-item">
-                              <a class="nav-link text-white" href="play.html">Play
+                            <li class="nav-item" *ngIf="!loged">
+                              <a class="nav-link text-white" (click)="selectRoom()">Play
                                 <div class="mr-hover-effect"></div>
                               </a>
-                              
                             </li>
+                            <li class="nav-item" *ngIf="loged">
+                                <a class="nav-link text-white" href="#" data-toggle="modal" data-target="#login">Play
+                                  <div class="mr-hover-effect"></div>
+                                </a>
+                              </li>
                             
                           </ul>
                         </div>

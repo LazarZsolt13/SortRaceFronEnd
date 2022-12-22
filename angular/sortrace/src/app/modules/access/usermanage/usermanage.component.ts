@@ -4,9 +4,12 @@ import { Router } from '@angular/router';
 import { LoginUserDto } from 'src/app/core/models/loginUser.model';
 import { RegisterUserDto } from 'src/app/core/models/registerUser.model';
 import { UserResponseDto } from 'src/app/core/models/userResponse.model';
+import { SearchGameDto } from 'src/app/core/models/searchGame.model';
 import { CookieService } from 'src/app/core/services/cookie.service';
+import { GameService } from 'src/app/core/services/game.service';
 import { UserService } from 'src/app/core/services/user.service';
-import sweet2 from 'sweetalert2';
+import Swal from 'sweetalert2';
+import { timer } from 'rxjs';
 
 @Component({
   selector: 'app-usermanage',
@@ -19,7 +22,9 @@ export class UsermanageComponent implements OnInit {
   loged: Boolean = false;
   nickname: String| undefined = "";
   cookie: String|null = "";
-  constructor(  private cookieService:CookieService, private router:Router, private userService:UserService) { }
+  searchGameDto:SearchGameDto = new SearchGameDto();
+  roomID:Number = -1;
+  constructor(  private cookieService:CookieService, private router:Router, private userService:UserService, private gameService:GameService) { }
 
   ngOnInit(): void {
     this.loged = this.cookieService.getCookie('currentUser') == null;
@@ -49,7 +54,7 @@ export class UsermanageComponent implements OnInit {
       },
       error: (err) => {
         if (err.status === 403) {
-          sweet2.fire({
+          Swal.fire({
             icon: 'error',
             title: 'Oops...',
             background: '#19191a',
@@ -65,7 +70,7 @@ export class UsermanageComponent implements OnInit {
     this.userService.registerUser(this.registerDto).subscribe({
       next: (response: HttpResponse<Boolean>) => {
         if(response.body === true){
-          sweet2.fire({
+          Swal.fire({
             icon: 'success',
             title: 'You have registrated successfully!',
             showConfirmButton: false,
@@ -80,7 +85,7 @@ export class UsermanageComponent implements OnInit {
         }
       },
       error: (err) => {
-        sweet2.fire({
+        Swal.fire({
           icon: 'error',
           title: 'Oops...',
           background: '#19191a',
@@ -95,4 +100,70 @@ export class UsermanageComponent implements OnInit {
     this.cookieService.deleteCookie('currentUser');
   }
 
-}
+  getRoom(){
+    if(this.searchGameDto.roomsize == 1 || this.searchGameDto.roomsize == 2 || this.searchGameDto.roomsize == 3 || this.searchGameDto.roomsize == 4){
+      this.gameService.searchForGame(this.searchGameDto).subscribe({
+        next: (response: HttpResponse<Number>) => {
+          this.roomID = response.body!!
+          this.timer()
+        },
+        error: (err) => {
+          console.log(err);
+        }
+      });
+    }
+  }
+
+  timer(){
+    Swal.fire({
+      title: 'Searching for your worthy opponent...',
+      timer: 20000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading(Swal.getDenyButton())
+      },
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {}
+    })
+    this.gameService.waitForPlayers(this.roomID).subscribe({
+      next: (response: HttpResponse<Boolean>) => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'We found your enemy',
+          footer: 'Please ready'
+        })
+        //TODO ready button
+        //TODO redirect to game page
+        //TODO Game...
+      },
+      error: (error) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: "Searching time stopped, try again!",
+        });
+      }
+    });
+  }
+
+  selectRoom():any{
+    Swal.fire({
+      title: 'Select player numbers',
+      input: 'select',
+      inputOptions: {
+        'Room Size': {
+          1: 1,
+          2: 2,
+          3: 3,
+          4: 4
+        }
+      },
+      inputPlaceholder: 'Select player numbers',
+      showCancelButton: false,
+    }).then((data) => {
+      this.searchGameDto.roomsize = data.value
+      this.getRoom()
+     });
+    }
+  }
