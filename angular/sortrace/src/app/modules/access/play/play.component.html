@@ -1,0 +1,149 @@
+<div class="preloader" id="preloader">
+    <div class="loader loader-1">
+        <div class="loader-outter"></div>
+        <div class="loader-inner"></div>
+    </div>
+</div>
+<!-- preloader area end -->
+
+<!-- Header Area Start  -->
+<header class="header">
+    <!--Main-Menu Area Start-->
+    <div class="mainmenu-area">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    
+                    <nav class="navbar navbar-expand-lg navbar-light" id="main_menu">
+                        
+                        <a  class="navbar-brand" href="">
+                            <h3  style="font-weight: bold; color:white">SORT<span style="color:#EC2124; font-weight: bold;">RACE</span></h3>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                          <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse fixed-height" id="main_menu">
+                            <ul class="navbar-nav ml-auto">
+                                <div class="mr-hover-effect"></div>
+                                <li class="nav-item dropdown">
+                                <a class="nav-link text-white" href="">Exit
+                                    <div class="mr-hover-effect"></div>
+                                </a>
+                                </li>
+                                
+                            </ul>
+                        </div>
+                      </nav>
+
+                    <!-- <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="index.html">
+                            <h3  style="font-weight: bold; color:black">SORT<span style="color:#EC2124">RACE</span></h3>
+                        </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_menu" aria-controls="main_menu" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        
+                        <div class="collapse navbar-collapse" id="main_menu">
+                            <ul class="navbar-nav">
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Home
+                                    <div class="mr-hover-effect"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="play.html">Play
+                                            <div class="mr-hover-effect"></div></a>
+                                </li>
+                            </ul>	
+                        </div>
+                    </nav> -->
+
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--Main-Menu Area Start-->
+</header>
+<!-- Header Area End  -->
+
+<!-- Play Games Area Start -->
+<section class="play-games">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+        <div class="all-games" style="height: 700px;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <ul *ngFor="let i of index" class="nav" role="tablist">
+                            <li class="nav-item"> 
+                                <!-- nav-link active es true -->
+                                <a class="nav-link" [ngClass]="{'active': containerActive(i) }" [ngClass]="{'active-green': containerActiveGreen(i) }" data-toggle="" (click)="selectOneItem(i)" role="" aria-selected="" style="width:70px;height:70px;border-radius: 10px;">
+                                <div class="icon" style="margin-top:6px;">
+                                    <img class="one" src="assets/images/play/ic4.png" alt="" style="max-width: 40px;
+                                    max-height: 40px;
+                                    min-width: 40px;
+                                    min-height: 40px;">
+                                    <img class="two" src="assets/images/play/ic44.png" alt="" style="max-width: 40px;
+                                    max-height: 40px;
+                                    min-width: 40px;
+                                    min-height: 40px;">
+                                </div>
+                                <!-- <span>Video</span> -->
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<section class="activities">
+   <div class="container">
+       <div class="row">
+           <div class="col-lg-12">
+               <div class="tab-menu-area">
+                   <ul class="nav nav-lend mb-3" id="pills-tab" role="tablist">
+                       <li class="nav-item">
+                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-all-bets-tab" data-toggle="" href="javascript: return false;" (click)="swap()" role="" aria-selected="">Swap</a>
+                       </li>
+                       <li class="nav-item">
+                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-my-bets-tab" data-toggle="" href="javascript: return false;" (click)="noswap()" role="" aria-selected="">No Swap</a>
+                       </li>
+                   </ul>
+               </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Play Games Area End -->
+
+<!-- Footer Area Start -->
+<footer class="footer" id="footer">
+            
+    <div class="copy-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="left-area">
+                        <p>Copyright © 2023.All Rights Reserved By Imola, Zsolt, Csaba
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer> 
+<!-- Footer Area End -->
+
+<!-- Back to Top Start -->
+<div class="bottomtotop">
+    <i class="fas fa-chevron-right"></i>
+</div>
+<!-- Back to Top End -->

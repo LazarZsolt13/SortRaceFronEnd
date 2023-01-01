@@ -2286,6 +2286,8 @@ select:focus {
             .play-games .all-games .nav li a.active span {
               text-shadow: 0px 0px 3px #d9293e, 0px 0px 7px #d9293e;
               color: #d9293e; }
+          .play-games .all-games .nav li a.active-green {
+            border-color: green !important; }
 
 /* Play Games Area End */
 /* Lottery Staticstics Area Start */

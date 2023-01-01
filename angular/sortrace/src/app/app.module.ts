@@ -4,6 +4,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './core/helpers/jwt.interceptor';
+import { AccessModule } from './modules/access/access.module';
+import { UsermanageComponent } from './modules/access/usermanage/usermanage.component';
 
 
 @NgModule({

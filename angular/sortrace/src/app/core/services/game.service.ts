@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { CompareRequestDto } from '../models/compareRequest.mode';
 import { LoginUserDto } from '../models/loginUser.model';
 import { RegisterUserDto } from '../models/registerUser.model';
 import { SearchGameDto } from '../models/searchGame.model';
@@ -22,4 +23,7 @@ export class GameService {
     return this.http.get<any>('http://25.62.242.88:8080/game/waitforplayers/' + id);
   }
 
+  compareByIndex(compareRequest: CompareRequestDto) {
+    return this.http.post<number>('http://25.62.242.88:8080/game/compareByIndex/', compareRequest, { observe: 'response'});
+  }
 }
