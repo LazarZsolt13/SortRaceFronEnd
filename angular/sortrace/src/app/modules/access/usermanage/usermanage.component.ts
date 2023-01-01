@@ -130,12 +130,14 @@ export class UsermanageComponent implements OnInit {
         Swal.fire({
           position: 'center',
           icon: 'success',
+          confirmButtonText: 'Ready',
           title: 'We found your enemy',
           footer: 'Please ready'
+        }).then(function(isConfirm) {
+          if (isConfirm) {
+            window.location.href='/play';
+          }
         })
-        //TODO ready button
-        //TODO redirect to game page
-        //TODO Game...
       },
       error: (error) => {
         Swal.fire({
