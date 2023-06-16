@@ -79,6 +79,11 @@
                                 <div class="mr-hover-effect"></div>
                               </a>
                             </li>
+                            <li class="nav-item" *ngIf="!loged">
+                                <a class="nav-link text-white" (click)="learnStart()">Learn
+                                  <div class="mr-hover-effect"></div>
+                                </a>
+                              </li>
                             <li class="nav-item" *ngIf="loged">
                                 <a class="nav-link text-white" href="#" data-toggle="modal" data-target="#login">Play
                                   <div class="mr-hover-effect"></div>

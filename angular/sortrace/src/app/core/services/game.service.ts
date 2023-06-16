@@ -6,24 +6,31 @@ import { LoginUserDto } from '../models/loginUser.model';
 import { RegisterUserDto } from '../models/registerUser.model';
 import { SearchGameDto } from '../models/searchGame.model';
 import { UserResponseDto } from '../models/userResponse.model';
+import { SwapRequestDto } from '../models/swapRequest.model';
+
 
 @Injectable({ providedIn: 'root' })
 export class GameService {
   constructor(private http: HttpClient) {}
-  
+  link: string = 'http://localhost:8080/game'
   searchForGame(searchGameDto: SearchGameDto) {
     return this.http.post<Number>(
-      'http://25.62.242.88:8080/game/searchforgame',
+      this.link+'/searchforgame',
       searchGameDto,
       { observe: 'response' }
     );
   }
 
   waitForPlayers(id: Number): Observable<any> {
-    return this.http.get<any>('http://25.62.242.88:8080/game/waitforplayers/' + id);
+    return this.http.get<any>(this.link+'/waitforplayers/' + id);
   }
-
+  startBubleMethod(id: Number): Observable<any>{
+    return this.http.get<any>(this.link+'/startBubleMethod/' + id);
+  }
   compareByIndex(compareRequest: CompareRequestDto) {
-    return this.http.post<number>('http://25.62.242.88:8080/game/compareByIndex/', compareRequest, { observe: 'response'});
+    return this.http.post<number>(this.link+'/compareByIndex/', compareRequest, { observe: 'response'});
+  }
+  swapByIndex(swapRequest: SwapRequestDto){
+    return this.http.post<any>(this.link+'/swapByIndex/', swapRequest, { observe: 'response'});
   }
 }

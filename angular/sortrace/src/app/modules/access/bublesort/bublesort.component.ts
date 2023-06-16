@@ -1,32 +1,25 @@
 import { HttpResponse } from '@angular/common/http';
 import { asNativeElements, Component, OnInit } from '@angular/core';
 import { CompareRequestDto } from 'src/app/core/models/compareRequest.mode';
-import { SwapRequestDto } from 'src/app/core/models/swapRequest.model';
 import { GameService } from 'src/app/core/services/game.service';
 import { UserService } from 'src/app/core/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-play',
-  templateUrl: './play.component.html',
-  styleUrls: ['./play.component.scss']
+  selector: 'app-bublesort',
+  templateUrl: './bublesort.component.html',
+  styleUrls: ['./bublesort.component.scss']
 })
-export class PlayComponent implements OnInit {
+export class BublesortComponent implements OnInit {
   index:Array<Number> = [0,1,2,3,4,5,6,7,8,9]
-  selectedFirst:Number = -1;
-  selectedSecond:Number = -1;
-  compared:CompareRequestDto = new CompareRequestDto();
-  swaping:SwapRequestDto = new SwapRequestDto();
-  selected:number = 0;
-  green:Number = -1;
+  green:Number = -1
+  selectedFirst:Number = -1
+  compared:CompareRequestDto = new CompareRequestDto()
+  selected:number = 0
+  selectedSecond:Number = -1
   constructor(private gameService:GameService, private userService:UserService) { }
 
   ngOnInit(): void {
-    // if(this.userService)
-    // kell egy kérés a backendre ami megmondja, hogy érvényesen vagyok e a ../play cim alatt vagyis van e tokenem
-    // swap no swap buttons and swap function in backend
   }
-
 
   selectOneItem(i:Number){
     this.selected = this.selected +1;
@@ -36,8 +29,6 @@ export class PlayComponent implements OnInit {
       this.selectedSecond = i;
       this.compared.i = this.selectedFirst;
       this.compared.j = this.selectedSecond;
-      this.swaping.i = this.selectedFirst;
-      this.swaping.j = this.selectedSecond;
       this.gameService.compareByIndex(this.compared).subscribe({
         next: (response: HttpResponse<number>) => {
           console.log(response.body)
@@ -74,33 +65,6 @@ export class PlayComponent implements OnInit {
 
   swap(){
     this.green = -1;
-    
-    console.log(this.swaping.i);
-    this.gameService.swapByIndex(this.swaping).subscribe({
-        next: (response: HttpResponse<number>) => {
-        console.log(response.body)
-        if (response.body != null && response.body == 2){
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            confirmButtonText: 'Ready',
-            title: 'Nice job',
-            footer: 'Please ready'
-          }).then(function(isConfirm) {
-            if (isConfirm) {
-              window.location.href='/play';
-            }
-          })
-        }
-        this.selected = 0;
-        this.swaping.i = -1;
-        this.swaping.j = -1;
-        
-      },
-       error: (err) => {
-        console.log(err);
-      }
-    });
   }
 
   noswap(){

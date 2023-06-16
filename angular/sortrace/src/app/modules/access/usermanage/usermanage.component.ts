@@ -113,7 +113,17 @@ export class UsermanageComponent implements OnInit {
       });
     }
   }
-
+  getBubleMethodRoom(){
+    this.gameService.startBubleMethod(43).subscribe({
+      next: (response: HttpResponse<Number>) => {
+        this.roomID = response.body!!
+        //this.timer()
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
+  }
   timer(){
     Swal.fire({
       title: 'Searching for your worthy opponent...',
@@ -167,5 +177,24 @@ export class UsermanageComponent implements OnInit {
       this.searchGameDto.roomsize = data.value
       this.getRoom()
      });
-    }
   }
+
+  learnStart():any{
+    Swal.fire({
+      title: 'Select the sort method',
+      input: 'select',
+      inputOptions: {
+        'The method': {
+          1: 'Buble Sort'
+        }
+      },
+      inputPlaceholder: 'Select the sort method',
+      showCancelButton: false,
+    }).then((data) => {
+      //this.searchGameDto.roomsize = data.value
+      this.getBubleMethodRoom()
+      window.location.href='/bublesort';
+     });
+  }
+}
+  

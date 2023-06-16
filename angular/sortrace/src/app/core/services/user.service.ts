@@ -11,7 +11,7 @@ export class UserService {
   
   registerUser(userDto: RegisterUserDto) {
     return this.http.post<Boolean>(
-      'http://25.62.242.88:8080/user/register',
+      'http://localhost:8080/user/register',
       userDto,
       { observe: 'response' }
     );
@@ -19,7 +19,7 @@ export class UserService {
 
   logInUser(logInUserDto: LoginUserDto) {
     return this.http.post<UserResponseDto>(
-      'http://25.62.242.88:8080/user/login',
+      'http://localhost:8080/user/login',
       logInUserDto,
       { observe: 'response' }
     );
