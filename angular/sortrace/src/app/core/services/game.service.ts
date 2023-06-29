@@ -33,4 +33,7 @@ export class GameService {
   swapByIndex(swapRequest: SwapRequestDto){
     return this.http.post<any>(this.link+'/swapByIndex/', swapRequest, { observe: 'response'});
   }
+  removePlayer(): Observable<any>{
+    return this.http.get<any>(this.link+'/removeplayer/');
+  }
 }

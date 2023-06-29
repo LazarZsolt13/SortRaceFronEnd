@@ -30,6 +30,7 @@ export class UsermanageComponent implements OnInit {
     this.loged = this.cookieService.getCookie('currentUser') == null;
     this.cookie = this.cookieService.getCookie('currentUser');
     this.nickname = this.cookie?.split(',')[3].split(':')[1].replace("\"", '').replace("\"", '');
+    
   }
 
   login():void{
@@ -185,7 +186,10 @@ export class UsermanageComponent implements OnInit {
       input: 'select',
       inputOptions: {
         'The method': {
-          1: 'Buble Sort'
+          1: 'Selection sort',
+          2: 'Bubble Sort',
+          3: 'Merge sort',
+          4: 'Quick sort'
         }
       },
       inputPlaceholder: 'Select the sort method',

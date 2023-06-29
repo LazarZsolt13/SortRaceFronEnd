@@ -84,8 +84,9 @@
                         <ul *ngFor="let i of index" class="nav" role="tablist">
                             <li class="nav-item"> 
                                 <!-- nav-link active es true -->
-                                <a class="nav-link" [ngClass]="{'active': containerActive(i) }" [ngClass]="{'active-green': containerActiveGreen(i) }" data-toggle="" (click)="selectOneItem(i)" role="" aria-selected="" style="width:70px;height:100px;border-radius: 10px;">
-                                <div class="icon" style="margin-top:6px;">
+                                
+                                <a class="nav-link" [ngClass]="{'active': containerActive(i) }" [ngClass]="{'active-green': containerActiveGreen(i) }"  [ngClass]="{'moveup': containerActiveGreen(i) }" data-toggle="" (click)="selectOneItem(i)" role="" aria-selected="" style="width:70px;height:100px;border-radius: 10px;">
+                                <div class="icon spinall" style="margin-top:6px;">
                                     <img class="one" src="assets/images/play/ic4.png" alt="" style="margin-top:15px; max-width: 40px;
                                     max-height: 40px;
                                     min-width: 40px;
@@ -111,10 +112,10 @@
                <div class="tab-menu-area">
                    <ul class="nav nav-lend mb-3" id="pills-tab" role="tablist">
                        <li class="nav-item">
-                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-all-bets-tab" data-toggle="" href="javascript: return false;" (click)="swap()" role="" aria-selected="">Swap</a>
+                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-all-bets-tab" data-toggle="" href="javascript: void(0)" (click)="swap()" role="" aria-selected="">Swap</a>
                        </li>
                        <li class="nav-item">
-                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-my-bets-tab" data-toggle="" href="javascript: return false;" (click)="noswap()" role="" aria-selected="">Don't Swap</a>
+                           <a [ngClass]="{'active': green!=-1}" class="nav-link" id="pills-my-bets-tab" data-toggle="" href="javascript: void(0)" (click)="noswap()" role="" aria-selected="">Don't Swap</a>
                        </li>
                    </ul>
                </div>

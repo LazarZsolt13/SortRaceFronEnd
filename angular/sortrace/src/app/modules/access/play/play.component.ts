@@ -1,9 +1,10 @@
 import { HttpResponse } from '@angular/common/http';
-import { asNativeElements, Component, OnInit } from '@angular/core';
+import { asNativeElements, Component, OnInit, HostListener} from '@angular/core';
 import { CompareRequestDto } from 'src/app/core/models/compareRequest.mode';
 import { SwapRequestDto } from 'src/app/core/models/swapRequest.model';
 import { GameService } from 'src/app/core/services/game.service';
 import { UserService } from 'src/app/core/services/user.service';
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,7 +12,57 @@ import Swal from 'sweetalert2';
   templateUrl: './play.component.html',
   styleUrls: ['./play.component.scss']
 })
+
 export class PlayComponent implements OnInit {
+  @HostListener('window:keydown', ['$event']) 
+    onKeyDown(e:KeyboardEvent) {
+      if (e.key==='1'){
+        this.selectOneItem(0)
+      
+      }
+      if (e.key==='2'){
+        this.selectOneItem(1)
+        
+      }
+      if (e.key==='3'){
+        this.selectOneItem(2)
+        
+      }
+      if (e.key==='4'){
+        this.selectOneItem(3)
+        
+      }
+      if (e.key==='5'){
+        this.selectOneItem(4)
+        
+      }
+      if (e.key==='6'){
+        this.selectOneItem(5)
+        
+      }
+      if (e.key==='7'){
+        this.selectOneItem(6)
+        
+      }
+      if (e.key==='8'){
+        this.selectOneItem(7)
+        
+      }if (e.key==='9'){
+        this.selectOneItem(8)
+        
+      }if (e.key==='0'){
+        this.selectOneItem(9)
+        
+      }if (e.key===' '){
+        this.swap()
+        
+      }if (e.key==='Escape'){
+        this.noswap()
+        
+      }
+      console.log(e.key)
+      
+  }
   index:Array<Number> = [0,1,2,3,4,5,6,7,8,9]
   selectedFirst:Number = -1;
   selectedSecond:Number = -1;
@@ -19,7 +70,8 @@ export class PlayComponent implements OnInit {
   swaping:SwapRequestDto = new SwapRequestDto();
   selected:number = 0;
   green:Number = -1;
-  constructor(private gameService:GameService, private userService:UserService) { }
+ 
+  constructor(public gameService:GameService, private userService:UserService) { }
 
   ngOnInit(): void {
     // if(this.userService)
@@ -73,23 +125,27 @@ export class PlayComponent implements OnInit {
   }
 
   swap(){
+    let done=0;
+    console.log(done);
     this.green = -1;
-    
-    console.log(this.swaping.i);
     this.gameService.swapByIndex(this.swaping).subscribe({
         next: (response: HttpResponse<number>) => {
-        console.log(response.body)
-        if (response.body != null && response.body == 2){
+        if (response.body != null && response.body > 1){
+          done = 1;
+          this.gameService.removePlayer().subscribe({
+            next: (response: HttpResponse<number>) => {
+              console.log(response.body)
+            }
+          })
+          let sec = Math.floor(response.body / 1000)
+          let min = Math.floor(sec / 60)
+          sec = sec - (min*60)
           Swal.fire({
             position: 'center',
             icon: 'success',
             confirmButtonText: 'Ready',
-            title: 'Nice job',
+            title: 'Nice job your time is ' + min.toString().padStart(2, '0') + ":" + sec.toString().padStart(2, '0'),
             footer: 'Please ready'
-          }).then(function(isConfirm) {
-            if (isConfirm) {
-              window.location.href='/play';
-            }
           })
         }
         this.selected = 0;
@@ -101,6 +157,8 @@ export class PlayComponent implements OnInit {
         console.log(err);
       }
     });
+
+    
   }
 
   noswap(){

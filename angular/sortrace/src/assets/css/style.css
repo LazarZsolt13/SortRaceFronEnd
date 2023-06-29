@@ -2287,7 +2287,10 @@ select:focus {
               text-shadow: 0px 0px 3px #d9293e, 0px 0px 7px #d9293e;
               color: #d9293e; }
           .play-games .all-games .nav li a.active-green {
-            border-color: green !important; }
+            border-color: green !important; 
+            
+
+          }
 
 /* Play Games Area End */
 /* Lottery Staticstics Area Start */
@@ -4233,4 +4236,37 @@ select:focus {
   color: #fff;
   font-size: 20px; }
 
+  .moveup {
+    animation: moveup 1s;
+    width: 30px;
+    }
+    
+    @keyframes moveup {
+        0% {
+        transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-50px);
+        }
+        100% {
+          transform: translateY(0px);
+        }
+    }
+
+    .spinall {
+      animation: spinall 2s;
+      width: 30px;
+      }
+      
+      @keyframes spinall {
+          0% {
+          transform: rotate(0deg);
+          }
+          50% {
+          transform: rotate(-360deg);
+          }
+          100% {
+              transform: rotate(0deg);
+          }
+      }
 /* login modal Area End */
